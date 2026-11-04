@@ -19,6 +19,7 @@ const icon = (n) => `<svg class="ic" viewBox="0 0 24 24" aria-hidden="true">${IC
 
 // 每个 skill 对应一个瑞士风主题（横幅动画区的底色），作品上的小色块也用它
 const META = {
+  'wuxian-design': { short: '统一入口', theme: 'ikb', dot: '#002FA7' },
   'guizang-ppt-skill': { short: 'PPT', theme: 'ikb', dot: '#002FA7' },
   'guizang-social-card-skill': { short: '卡片', theme: 'safety-orange', dot: '#FF6B35' },
   'guizang-page-skill': { short: '网页', theme: 'lemon-green', dot: '#C5E803' },
@@ -97,7 +98,7 @@ function exampleTable(list) {
   </div>`
 }
 
-const emptyWorks = `<div class="empty">还没有作品。用上面任意一个 skill 做完一份，它会自己登记到这里。以前做的，可以在对话里说「把 &lt;文件路径&gt; 登记进歸藏设计的作品库」。</div>`
+const emptyWorks = `<div class="empty">还没有作品。用上面任意一个 skill 做完一份，它会自己登记到这里。以前做的，可以在对话里说「把 &lt;文件路径&gt; 登记进无限灵感设计的作品库」。</div>`
 
 const VOICE_DESC = '读你在 DeepSeek 里发过的消息（尤其是大段的文字），学出你自己的写作习惯：常用的词、不用的词、句子长短、标点和称呼。去 AI 味时保留你本来的说法；让 AI 仿写文案、讲稿、卡片标题时，照着你的语气写。只存在这台电脑上。'
 
@@ -148,7 +149,7 @@ function pills(key, list) {
 const VIEWS = {
   home() {
     const { skills, works, recipes, examples, columns, voice } = data
-    return `${head('歸藏设计 · 插件', '用一套设计做所有内容', 'PPT、图文卡片、网页排版、去 AI 味，共用同一套瑞士风 / 杂志风设计系统。做过的作品都在这里，点「做同款」就能接着做下一份。')}
+    return `${head('无限灵感设计 · 开源改编', '一套设计，多种表达', '基于歸藏设计：PPT、图文卡片、网页排版与去 AI 味，保留瑞士风 / 杂志风系统，增加统一入口与按需设计复核。')}
       <div class="stats">
         <div class="stat"><span class="mono">作品</span><div class="val">${works.length}</div><div class="sub">已登记</div></div>
         <div class="stat"><span class="mono">专栏</span><div class="val">${columns.length}</div><div class="sub">${columns.reduce((n, c) => n + c.issues, 0)} 期</div></div>

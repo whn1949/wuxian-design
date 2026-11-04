@@ -1,7 +1,7 @@
 {
-  "name": "dsh-guizang-design",
-  "version": "0.1.3",
-  "description": "歸藏设计 · DeepSeek Harness 插件：网页 PPT、图文卡片、网页排版、去 AI 味四个 skill，一套设计系统；展示库收着官方示例和你做过的作品，一键做同风格的下一份。",
+  "name": "dsh-wuxian-design",
+  "version": "0.1.4",
+  "description": "无限灵感设计：基于歸藏设计的开源改编版，保留 PPT、图文卡片、网页排版、去 AI 味与语气档案，增加统一入口和按需设计复核。",
   "type": "module",
   "main": "lib/index.js",
   "exports": {
@@ -22,6 +22,10 @@
     "cordis.patch.yml",
     "icon.png",
     "own-skills",
+    "SKILL.md",
+    "references",
+    "agents",
+    "说明.md",
     "README.md",
     "LICENSE",
     "README.en.md"
@@ -35,11 +39,12 @@
     "design-system",
     "typography"
   ],
-  "author": "op7418",
-  "homepage": "https://github.com/op7418/dsh-guizang-design",
+  "author": "whn1949",
+  "contributors": ["op7418（上游原作者）"],
+  "homepage": "https://github.com/whn1949/wuxian-design",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/op7418/dsh-guizang-design.git"
+    "url": "git+https://github.com/whn1949/wuxian-design.git"
   },
   "engines": {
     "node": "^22.19.0 || >=24.0.0",

@@ -14,15 +14,37 @@ const { addWork, listWorks, removeWork } = await import('../lib/library.js')
 const { RECIPES, SKILLS } = await import('../lib/recipes.js')
 const { libraryTool, voiceTool, TOOLS } = await import('../lib/tools.js')
 
-const provider = createSkillProvider([join(ROOT, 'skills'), join(ROOT, 'own-skills')], ROOT)
+const provider = createSkillProvider([join(ROOT, 'skills'), join(ROOT, 'own-skills'), ROOT], ROOT)
 
-test('四个 skill 和语气档案都注册了，名字合法', async () => {
+test('原有五项能力和新增统一入口都注册了，名字合法', async () => {
   const names = (await provider.list({})).map((c) => c.name).sort()
-  assert.deepEqual(names, ['guizang-page-skill', 'guizang-ppt-skill', 'guizang-social-card-skill', 'guizang-voice', 'humanizer-zh'])
+  assert.deepEqual(names, ['guizang-page-skill', 'guizang-ppt-skill', 'guizang-social-card-skill', 'guizang-voice', 'humanizer-zh', 'wuxian-design'])
   for (const c of await provider.list({})) {
     assert.match(c.name, /^[a-z0-9]+(-[a-z0-9]+)*$/)
     assert.ok(c.description.length > 20)
     assert.equal(c.resourceBase.kind, 'directory')
+  }
+})
+
+test('技能目录与换行格式：LF 和 CRLF 都能发现、加载且不重复扫描', async () => {
+  const dir = mkdtempSync(join(tmpdir(), 'wuxian-skill-'))
+  for (const newline of ['\n', '\r\n']) {
+    const text = ['---', 'name: example-skill', 'description: 用于验证两种换行下的技能发现和内容加载。', '---', '# 正文', '保留内容。'].join(newline)
+    writeFileSync(join(dir, 'SKILL.md'), text)
+    const local = createSkillProvider(dir, ROOT)
+    const candidates = await local.list({})
+    assert.equal(candidates.length, 1)
+    assert.equal(candidates[0].name, 'example-skill')
+    assert.match((await local.get(candidates[0], {})).content, /# 正文\n保留内容。/)
+  }
+})
+
+test('统一入口可以加载，且所有本地文档链接都存在', async () => {
+  const candidate = (await provider.list({})).find((skill) => skill.name === 'wuxian-design')
+  const loaded = await provider.get(candidate, {})
+  assert.ok(!loaded.content.includes('## 在歸藏设计插件（DSH）里使用'))
+  for (const match of loaded.content.matchAll(/\]\(([^)]+\.md)\)/g)) {
+    assert.ok(readFileSync(join(ROOT, match[1]), 'utf8').length > 0, match[1])
   }
 })
 

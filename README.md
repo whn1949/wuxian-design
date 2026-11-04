@@ -1,4 +1,20 @@
-# 歸藏设计 · dsh-guizang-design
+# 无限灵感设计 · wuxian-design
+
+基于 [歸藏设计](https://github.com/op7418/dsh-guizang-design) 的开源改编版，不是上游官方发布。保留原有五项能力、设计系统和渲染脚本，新增统一入口 `/wuxian-design`、按需设计复核与 Windows 技能识别修复。
+
+- **仓库**：https://github.com/whn1949/wuxian-design
+- **完整说明、作用和安装方法**：[说明.md](说明.md)
+- **统一技能入口**：[SKILL.md](SKILL.md)
+- **新增设计检查**：[references/design-review.md](references/design-review.md)
+- **安装**：克隆本仓库，在根目录运行 `npm ci`；DSH 本地安装使用 `dsh plugin --profile web add "link:实际仓库绝对路径"`。
+- **保真边界**：`skills/` 和语气档案原文不改；保留内部路由、工具名及原子技能标识，不建议与原插件同时启用。此改编版尚未发布至 npm。
+- **许可**：保留原 AGPL-3.0-only 及各子技能许可证；上游作者和来源不因改名移除。
+
+下面保留上游使用说明，描述的是原版；其中 npm 安装、原仓库更新命令及旧品牌截图不是本改编版的安装入口，请以上面的说明为准。
+
+---
+
+## 上游说明（原文保留）
 
 中文 | [English](README.en.md)
 
